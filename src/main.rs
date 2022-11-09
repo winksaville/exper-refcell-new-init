@@ -3,9 +3,9 @@
 #![feature(get_mut_unchecked)]
 
 fn main() {
-    use std::rc::Rc;
+    use std::{rc::Rc, mem::MaybeUninit};
 
-    let mut five = Rc::<u32>::new_uninit();
+    let mut five: Rc<MaybeUninit<u32>> = Rc::<u32>::new_uninit();
 
     // Deferred initialization:
     Rc::get_mut(&mut five).unwrap().write(5);
